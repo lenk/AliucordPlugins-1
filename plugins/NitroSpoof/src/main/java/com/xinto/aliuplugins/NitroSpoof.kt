@@ -1,6 +1,7 @@
 package com.xinto.aliuplugins
 
 import android.content.Context
+import com.aliucord.Constants
 import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.api.CommandsAPI
 import com.aliucord.entities.Plugin
@@ -11,6 +12,7 @@ import com.xinto.aliuplugins.nitrospoof.EMOTE_SIZE_KEY
 import com.xinto.aliuplugins.nitrospoof.PluginSettings
 import com.discord.models.domain.emoji.ModelEmojiCustom
 import de.robv.android.xposed.XC_MethodHook
+import java.io.File
 import java.lang.reflect.Field
 
 @AliucordPlugin
@@ -584,6 +586,10 @@ class NitroSpoof : Plugin() {
                 false
             )
         }
+
+        try {
+            File(Constants.PLUGINS_PATH, "NitroSpoof.zip").delete()
+        } catch (_: Throwable) {}
     }
 
     override fun stop(context: Context) {
